@@ -8,10 +8,7 @@ class CashRegister:
         Args:
             discount (int): Percentage discount (0-100). Defaults to 0.
         """
-        # Set discount (will be validated by property setter)
         self.discount = discount
-        
-        # Initialize instance variables as required by tests
         self.total = 0
         self.items = []
         self.previous_transactions = []
@@ -42,17 +39,12 @@ class CashRegister:
             price (float): Price per unit
             quantity (int): Number of items (defaults to 1)
         """
-        # Calculate total cost for this transaction
         item_total = price * quantity
-        
-        # Add to total
         self.total += item_total
         
-        # Add item to items array (quantity times)
         for _ in range(quantity):
             self.items.append(item)
         
-        # Store transaction for potential void
         self.previous_transactions.append({
             'item': item,
             'price': price,
@@ -82,24 +74,20 @@ class CashRegister:
         if not self.previous_transactions:
             return
         
-        # Get the last transaction
         last_transaction = self.previous_transactions.pop()
-        
-        # Remove items from items list (from the end)
         quantity = last_transaction['quantity']
+        
         for _ in range(quantity):
             if self.items:
                 self.items.pop()
         
-        # Subtract from total
         self.total -= last_transaction['item_total']
         
-        # Ensure total doesn't go negative due to floating point
         if self.total < 0:
             self.total = 0.0
 
 
-# Test code at the bottom
+# Test code (this won't run on CodeGrade, only when you run it manually)
 if __name__ == "__main__":
     print("Running CashRegister tests...")
     
