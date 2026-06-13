@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 class CashRegister:
     """Cash Register class for tracking purchases, discounts, and transactions."""
     
@@ -55,16 +57,14 @@ class CashRegister:
     def apply_discount(self):
         """
         Apply discount to total price.
-        
-        Returns:
-            str: Success message with updated total or error message
+        Prints success message with updated total or error message.
         """
         if self.discount > 0:
             discount_amount = self.total * (self.discount / 100)
             self.total -= discount_amount
-            return f"After the discount, the total price is ${self.total:.2f}."
+            print(f"After the discount, the total comes to ${int(self.total)}.")
         else:
-            return "There is no discount to apply."
+            print("There is no discount to apply.")
     
     def void_last_transaction(self):
         """
